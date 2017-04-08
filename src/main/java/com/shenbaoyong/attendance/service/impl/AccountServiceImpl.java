@@ -54,11 +54,6 @@ public class AccountServiceImpl implements IAccountService{
 
     @Override
     public BaseResult logout() {
-        LoginUser loginUser = sessionComponent.getLoginUser();
-        if (loginUser == null) {
-            logger.info("当前没用用户登陆或者会话已过期");
-            return BaseResult.error("当前没用用户登陆或者会话已过期");
-        }
         sessionComponent.removeLoginUser();
         return BaseResult.ok(true);
     }

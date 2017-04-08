@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shenbaoyong.attendance.dao.StudentMapper">
-  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.Student">
-    <id column="id" jdbcType="INTEGER" property="id" />
+<mapper namespace="com.shenbaoyong.attendance.dao.AdminUserMapper">
+  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.AdminUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="classroomid" jdbcType="INTEGER" property="classroomid" />
+    <result column="sex" jdbcType="BIT" property="sex" />
     <result column="phone" jdbcType="BIGINT" property="phone" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,16 +68,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, classroomid, phone, status
+    id, name, sex, phone, email, password
   </sql>
-  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.StudentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.AdminUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from student
+    from admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,30 +85,30 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from student
-    where id = #{id,jdbcType=INTEGER}
+    from admin
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from student
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from admin
+    where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.StudentExample">
-    delete from student
+  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.AdminUserExample">
+    delete from admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.Student">
-    insert into student (id, name, classroomid, 
-      phone, status)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{classroomid,jdbcType=INTEGER}, 
-      #{phone,jdbcType=BIGINT}, #{status,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.AdminUser">
+    insert into admin (id, name, sex, phone, 
+      email, password)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{phone,jdbcType=BIGINT}, 
+      #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.Student">
-    insert into student
+  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.AdminUser">
+    insert into admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -115,57 +116,66 @@
       <if test="name != null">
         name,
       </if>
-      <if test="classroomid != null">
-        classroomid,
+      <if test="sex != null">
+        sex,
       </if>
       <if test="phone != null">
         phone,
       </if>
-      <if test="status != null">
-        status,
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="classroomid != null">
-        #{classroomid,jdbcType=INTEGER},
+      <if test="sex != null">
+        #{sex,jdbcType=BIT},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=BIGINT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.StudentExample" resultType="java.lang.Long">
-    select count(*) from student
+  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.AdminUserExample" resultType="java.lang.Long">
+    select count(*) from admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update student
+    update admin
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.classroomid != null">
-        classroomid = #{record.classroomid,jdbcType=INTEGER},
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=BIT},
       </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=BIGINT},
       </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=TINYINT},
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -173,40 +183,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update student
-    set id = #{record.id,jdbcType=INTEGER},
+    update admin
+    set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      classroomid = #{record.classroomid,jdbcType=INTEGER},
+      sex = #{record.sex,jdbcType=BIT},
       phone = #{record.phone,jdbcType=BIGINT},
-      status = #{record.status,jdbcType=TINYINT}
+      email = #{record.email,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.Student">
-    update student
+  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.AdminUser">
+    update admin
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="classroomid != null">
-        classroomid = #{classroomid,jdbcType=INTEGER},
+      <if test="sex != null">
+        sex = #{sex,jdbcType=BIT},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=BIGINT},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.Student">
-    update student
+  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.AdminUser">
+    update admin
     set name = #{name,jdbcType=VARCHAR},
-      classroomid = #{classroomid,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=BIT},
       phone = #{phone,jdbcType=BIGINT},
-      status = #{status,jdbcType=TINYINT}
-    where id = #{id,jdbcType=INTEGER}
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

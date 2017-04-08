@@ -4,7 +4,8 @@ import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.pojo.LoginUser;
 import com.shenbaoyong.attendance.common.utils.JsonUtils;
 import com.shenbaoyong.attendance.dto.BaseResult;
-import com.shenbaoyong.attendance.pojo.StudentUser;
+import com.shenbaoyong.attendance.pojo.AdminUser;
+import com.shenbaoyong.attendance.pojo.TeacherUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by Baoyong Shen on 2017/3/15.
- * 登陆拦截器 拦截学生用户
+ * Created by Shen Baoyong on 2017/4/8.
  */
 @Component
-public class SAuthenticationInterceptor implements HandlerInterceptor{
+public class AAuthenticationInterceptor implements HandlerInterceptor {
 
-    Logger logger = LoggerFactory.getLogger(SAuthenticationInterceptor.class);
+    Logger logger = LoggerFactory.getLogger(AAuthenticationInterceptor.class);
 
     @Value("${spring.intercepter.enable:true}")
     boolean intercepterEnable = true;
@@ -32,7 +32,7 @@ public class SAuthenticationInterceptor implements HandlerInterceptor{
     @Autowired
     SessionComponent sessionComponent;
 
-    public boolean isIntercepterEnable(){
+    public boolean isIntercepterEnable() {
         return intercepterEnable;
     }
 
@@ -41,7 +41,6 @@ public class SAuthenticationInterceptor implements HandlerInterceptor{
         if (!isIntercepterEnable()) {
             return true;
         }
-
         HttpSession session = httpServletRequest.getSession();
 
         String sessionId = session.getId();
@@ -52,15 +51,15 @@ public class SAuthenticationInterceptor implements HandlerInterceptor{
         logger.info("--------------------------------------method:" + method + "----------------------------------------");
 
         LoginUser loginUser = sessionComponent.getLoginUser();
-        if (loginUser == null){
+        if (loginUser == null) {
             httpServletResponse.setContentType("application/json;charset=UTF-8");
             String json = JsonUtils.objectToJson(BaseResult.error("请登录"));
             httpServletResponse.getWriter().print(json);
             return false;
         }
-        if (loginUser.hasStudentUser()){
-            StudentUser studentUser = loginUser.getStudentUser();
-            logger.info("-------------------------------loginUser:" + studentUser.getId() + "--" + studentUser.getName() + "---------------------------");
+        if (loginUser.hasAdminUser()) {
+            AdminUser adminUser = loginUser.getAdminUser();
+            logger.info("-------------------------------loginUser:" + adminUser.getId() + "--" + adminUser.getName() + "---------------------------");
             return true;
         }
         return true;

@@ -4,7 +4,9 @@ import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.pojo.LoginUser;
 import com.shenbaoyong.attendance.common.utils.JsonUtils;
 import com.shenbaoyong.attendance.dto.BaseResult;
+import com.shenbaoyong.attendance.pojo.AdminUser;
 import com.shenbaoyong.attendance.pojo.StudentUser;
+import com.shenbaoyong.attendance.pojo.TeacherUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by Baoyong Shen on 2017/3/15.
- * 登陆拦截器 拦截学生用户
+ * Created by Shen Baoyong on 2017/4/8.
  */
 @Component
-public class SAuthenticationInterceptor implements HandlerInterceptor{
+public class AuthenticationIntercepter implements HandlerInterceptor{
 
-    Logger logger = LoggerFactory.getLogger(SAuthenticationInterceptor.class);
+    Logger logger = LoggerFactory.getLogger(AuthenticationIntercepter.class);
 
     @Value("${spring.intercepter.enable:true}")
     boolean intercepterEnable = true;
@@ -63,7 +64,17 @@ public class SAuthenticationInterceptor implements HandlerInterceptor{
             logger.info("-------------------------------loginUser:" + studentUser.getId() + "--" + studentUser.getName() + "---------------------------");
             return true;
         }
-        return true;
+        if (loginUser.hasTeacherUser()){
+            TeacherUser teacherUser= loginUser.getTeacherUser();
+            logger.info("-------------------------------loginUser:" + teacherUser.getId() + "--" + teacherUser.getName() + "---------------------------");
+            return true;
+        }
+        if (loginUser.hasAdminUser()){
+            AdminUser adminUser = loginUser.getAdminUser();
+            logger.info("-------------------------------loginUser:" + adminUser.getId() + "--" + adminUser.getName() + "---------------------------");
+            return true;
+        }
+        return false;  //todo 这儿返回？？？？ true还是false呢
     }
 
     @Override

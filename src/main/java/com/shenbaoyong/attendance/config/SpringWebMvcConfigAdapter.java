@@ -18,6 +18,7 @@ public class SpringWebMvcConfigAdapter extends WebMvcConfigurerAdapter{
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(authenticationIntercepter)
                 .addPathPatterns("/**")
+                .excludePathPatterns("/test/**")
                 .excludePathPatterns("/account/login");
     }
 }

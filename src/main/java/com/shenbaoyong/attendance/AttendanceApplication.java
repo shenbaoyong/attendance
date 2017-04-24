@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ComponentScan
+@Controller
 @SpringBootApplication
 public class AttendanceApplication {
 	static Logger logger = LoggerFactory.getLogger(AttendanceApplication.class);
@@ -21,5 +22,10 @@ public class AttendanceApplication {
 		logger.info("------------AttendanceApplication启动成功---------------");
 		logger.info("--------------------------------------------------------------------");
 		logger.info("--------------------------------------------------------------------");
+	}
+
+	@RequestMapping("/")
+	public String index(){
+		return "index";
 	}
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">  
+    <title>。。。</title>  
+    <link rel="stylesheet" type="text/css" href="Student.css"/> 
+</head>
+<body>
+
+
+<div class="welcom" th:text="${login_user_message}">欢迎</div>
+<div class="main">
+	<h1 style="color:black;">大学生考勤管理系统</h1>
+	<div class="medium">
+			<select class="select" id="course_name" th:field="*{paymentMethod}" th:remove="all-but-first">
+				<option th:each="paymentMethod : ${paymentMethods}"
+				th:value="${paymentMethod}" th:text="${paymentMethod.description}">Credit card</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+			</select>
+		
+			<select class="select" id="week_name" th:field="*{paymentMethod}" th:remove="all-but-first">
+				<option th:each="paymentMethod : ${paymentMethods}"
+				th:value="${paymentMethod}" th:text="${paymentMethod.description}">Credit card</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+				<option>Another payment method</option>
+			</select>
+		<button class="but" type="submit">查询</button>
+	</div>
+	<table class="table table-bordered table-striped">  
+    <thead>  
+      <tr>  
+        <td>课程名</td>  
+        <td>星期几</td>  
+        <td>第几节课</td>  
+        <td>详情</td>  
+      </tr>  
+    </thead>  
+    <tbody> 
+    <tr>
+    	<td>大学英语</td><td>星期1</td><td>3，4</td><td>查看详情</td>
+    </tr> 
+    <tr>
+    	<td>大学英语</td><td>星期1</td><td>3，4</td><td>查看详情</td>
+    </tr> 
+    <tr>
+    	<td>大学英语</td><td>星期1</td><td>3，4</td><td>查看详情</td>
+    </tr> 
+      <tr th:each="message : ${messages}">  
+        <td th:text="${message.course_name}"></td>  
+        <td th:text="${message.week_name}"></td>  
+        <td th:text="${message.dijijieke}"></td>  
+        <td ><a href="view.html"  
+              th:href="@{'/' + ${message.id}}"  
+              th:text="查看详情">
+          </a>
+        </td>  
+      </tr>  
+    </tbody>  
+</table>  
+</div>
+</body>
+</html>

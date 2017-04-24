@@ -86,4 +86,17 @@ public class LoginUser implements Serializable{
             return null;
         }
     }
+
+    public String getWelcomMsg(){
+        if(hasAdminUser()){
+            return getAdminUser().getId() + " " + getAdminUser().getName();
+        }
+        if (hasStudentUser()){
+            return getStudentUser().getId() + " " + getStudentUser().getName();
+        }
+        if (hasTeacherUser()){
+            return getTeacherUser().getId() + " " + getTeacherUser().getName();
+        }
+        return "........";
+    }
 }

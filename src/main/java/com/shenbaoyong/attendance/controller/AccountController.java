@@ -3,10 +3,13 @@ package com.shenbaoyong.attendance.controller;
 import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.constents.UserConstants;
 import com.shenbaoyong.attendance.dto.BaseResult;
+import com.shenbaoyong.attendance.pojo.UserVO;
 import com.shenbaoyong.attendance.service.IAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -14,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Shen Baoyong on 2017/4/8.
  */
-@RestController
+@Controller
 @RequestMapping("/account")
 public class AccountController {
 
@@ -26,17 +29,23 @@ public class AccountController {
     IAccountService accountService;
 
     @PostMapping("/login")
-    public BaseResult login(@RequestBody Map<String, Object> params){
+    public String login(UserVO userVO, Model model){
         try{
-            String userType = (String)params.get(UserConstants.USER_TYPE);
-            long id = Long.parseLong( (String)params.get(UserConstants.USER_ID));
-            String password = (String)params.get(UserConstants.USER_PASSWORD);
-
+            String userType = userVO.getUserType();
+            long id = Long.parseLong(userVO.getUserId());
+            String password = userVO.getPassword();
             BaseResult result = accountService.login(userType, id, password);
-            return result;
+
+            if(result.isSuccess()){
+                String welcomMsg = sessionComponent.getLoginUser().getWelcomMsg();
+                model.addAttribute("msg", welcomMsg);
+                return "helloHtml";
+            }
+            model.addAttribute("msg", result.getError());
+            return "index";
         }catch (Exception e){
-            logger.error("登陆失败",e);
-            return BaseResult.error("登陆失败");
+            model.addAttribute("msg", "login failed");
+            return "helloHtml";
         }
     }
 

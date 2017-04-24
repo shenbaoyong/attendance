@@ -69,6 +69,7 @@ public class AccountServiceImpl implements IAccountService{
             return BaseResult.error("密码错误");
         }
         logger.info("管理员帐号{}, {}登陆成功", id, adminUser.getName());
+        sessionComponent.removeLoginUser();
         sessionComponent.setLoginUser(adminUser);
         return BaseResult.ok(true);
     }
@@ -84,6 +85,7 @@ public class AccountServiceImpl implements IAccountService{
             return BaseResult.error("密码错误");
         }
         logger.info("老师帐号{}, {}登陆成功", id, teacherUser.getName());
+        sessionComponent.removeLoginUser();
         sessionComponent.setLoginUser(teacherUser);
         return BaseResult.ok(true);
     }
@@ -99,6 +101,7 @@ public class AccountServiceImpl implements IAccountService{
             return BaseResult.error("密码错误");
         }
         logger.info("学号{}, {}登陆成功", id, studentUser.getName());
+        sessionComponent.removeLoginUser();
         sessionComponent.setLoginUser(studentUser);
         return BaseResult.ok(true);
     }

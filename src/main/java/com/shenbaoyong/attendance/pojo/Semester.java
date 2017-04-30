@@ -1,13 +1,16 @@
 package com.shenbaoyong.attendance.pojo;
 
+import org.assertj.core.internal.cglib.core.Local;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Semester {
     private Integer id;
 
-    private Date startData;
+    private LocalDate startData;
 
-    private Date endData;
+    private LocalDate endData;
 
     public Integer getId() {
         return id;
@@ -17,19 +20,19 @@ public class Semester {
         this.id = id;
     }
 
-    public Date getStartData() {
+    public LocalDate getStartData() {
         return startData;
     }
 
-    public void setStartData(Date startData) {
+    public void setStartData(LocalDate startData) {
         this.startData = startData;
     }
 
-    public Date getEndData() {
+    public LocalDate getEndData() {
         return endData;
     }
 
-    public void setEndData(Date endData) {
+    public void setEndData(LocalDate endData) {
         this.endData = endData;
     }
 }

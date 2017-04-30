@@ -1,16 +1,18 @@
 package com.shenbaoyong.attendance.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
-public class ClassroomExample {
+public class PeriodExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ClassroomExample() {
+    public PeriodExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,6 +106,32 @@ public class ClassroomExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
+        }
+
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;
@@ -164,193 +192,123 @@ public class ClassroomExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andStartDataIsNull() {
+            addCriterion("start_data is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andStartDataIsNotNull() {
+            addCriterion("start_data is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andStartDataEqualTo(Date value) {
+            addCriterionForJDBCDate("start_data =", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andStartDataNotEqualTo(Date value) {
+            addCriterionForJDBCDate("start_data <>", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+        public Criteria andStartDataGreaterThan(Date value) {
+            addCriterionForJDBCDate("start_data >", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andStartDataGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("start_data >=", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+        public Criteria andStartDataLessThan(Date value) {
+            addCriterionForJDBCDate("start_data <", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andStartDataLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("start_data <=", value, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+        public Criteria andStartDataIn(List<Date> values) {
+            addCriterionForJDBCDate("start_data in", values, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+        public Criteria andStartDataNotIn(List<Date> values) {
+            addCriterionForJDBCDate("start_data not in", values, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andStartDataBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("start_data between", value1, value2, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andStartDataNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("start_data not between", value1, value2, "startData");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andEndDataIsNull() {
+            addCriterion("end_data is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
+        public Criteria andEndDataIsNotNull() {
+            addCriterion("end_data is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearIsNull() {
-            addCriterion("entrance_year is null");
+        public Criteria andEndDataEqualTo(Date value) {
+            addCriterionForJDBCDate("end_data =", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearIsNotNull() {
-            addCriterion("entrance_year is not null");
+        public Criteria andEndDataNotEqualTo(Date value) {
+            addCriterionForJDBCDate("end_data <>", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearEqualTo(Integer value) {
-            addCriterion("entrance_year =", value, "entranceYear");
+        public Criteria andEndDataGreaterThan(Date value) {
+            addCriterionForJDBCDate("end_data >", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearNotEqualTo(Integer value) {
-            addCriterion("entrance_year <>", value, "entranceYear");
+        public Criteria andEndDataGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("end_data >=", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearGreaterThan(Integer value) {
-            addCriterion("entrance_year >", value, "entranceYear");
+        public Criteria andEndDataLessThan(Date value) {
+            addCriterionForJDBCDate("end_data <", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearGreaterThanOrEqualTo(Integer value) {
-            addCriterion("entrance_year >=", value, "entranceYear");
+        public Criteria andEndDataLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("end_data <=", value, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearLessThan(Integer value) {
-            addCriterion("entrance_year <", value, "entranceYear");
+        public Criteria andEndDataIn(List<Date> values) {
+            addCriterionForJDBCDate("end_data in", values, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearLessThanOrEqualTo(Integer value) {
-            addCriterion("entrance_year <=", value, "entranceYear");
+        public Criteria andEndDataNotIn(List<Date> values) {
+            addCriterionForJDBCDate("end_data not in", values, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearIn(List<Integer> values) {
-            addCriterion("entrance_year in", values, "entranceYear");
+        public Criteria andEndDataBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("end_data between", value1, value2, "endData");
             return (Criteria) this;
         }
 
-        public Criteria andEntranceYearNotIn(List<Integer> values) {
-            addCriterion("entrance_year not in", values, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearBetween(Integer value1, Integer value2) {
-            addCriterion("entrance_year between", value1, value2, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearNotBetween(Integer value1, Integer value2) {
-            addCriterion("entrance_year not between", value1, value2, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIsNull() {
-            addCriterion("dept_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIsNotNull() {
-            addCriterion("dept_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdEqualTo(Integer value) {
-            addCriterion("dept_id =", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotEqualTo(Integer value) {
-            addCriterion("dept_id <>", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdGreaterThan(Integer value) {
-            addCriterion("dept_id >", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("dept_id >=", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdLessThan(Integer value) {
-            addCriterion("dept_id <", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdLessThanOrEqualTo(Integer value) {
-            addCriterion("dept_id <=", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIn(List<Integer> values) {
-            addCriterion("dept_id in", values, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotIn(List<Integer> values) {
-            addCriterion("dept_id not in", values, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id between", value1, value2, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id not between", value1, value2, "deptId");
+        public Criteria andEndDataNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("end_data not between", value1, value2, "endData");
             return (Criteria) this;
         }
     }

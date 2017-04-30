@@ -1,8 +1,6 @@
 package com.shenbaoyong.attendance.pojo;
 
-import java.io.Serializable;
-
-public class StudentUser implements Serializable{
+public class StudentUser {
     private Long id;
 
     private Integer classroomId;

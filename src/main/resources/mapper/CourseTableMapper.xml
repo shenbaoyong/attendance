@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shenbaoyong.attendance.dao.ClassroomMapper">
-  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.Classroom">
+<mapper namespace="com.shenbaoyong.attendance.dao.CourseTableMapper">
+  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.CourseTable">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="entrance_year" jdbcType="INTEGER" property="entranceYear" />
-    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,16 +65,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, entrance_year, dept_id
+    id, start_time, end_time
   </sql>
-  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.ClassroomExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTableExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from classroom
+    from course_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,76 +85,67 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from classroom
+    from course_table
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from classroom
+    delete from course_table
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.ClassroomExample">
-    delete from classroom
+  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTableExample">
+    delete from course_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.Classroom">
-    insert into classroom (id, name, entrance_year, 
-      dept_id)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{entranceYear,jdbcType=INTEGER}, 
-      #{deptId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.CourseTable">
+    insert into course_table (id, start_time, end_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.Classroom">
-    insert into classroom
+  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.CourseTable">
+    insert into course_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="startTime != null">
+        start_time,
       </if>
-      <if test="entranceYear != null">
-        entrance_year,
-      </if>
-      <if test="deptId != null">
-        dept_id,
+      <if test="endTime != null">
+        end_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="entranceYear != null">
-        #{entranceYear,jdbcType=INTEGER},
-      </if>
-      <if test="deptId != null">
-        #{deptId,jdbcType=INTEGER},
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.ClassroomExample" resultType="java.lang.Long">
-    select count(*) from classroom
+  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTableExample" resultType="java.lang.Long">
+    select count(*) from course_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update classroom
+    update course_table
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.entranceYear != null">
-        entrance_year = #{record.entranceYear,jdbcType=INTEGER},
-      </if>
-      <if test="record.deptId != null">
-        dept_id = #{record.deptId,jdbcType=INTEGER},
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,35 +153,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update classroom
+    update course_table
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      entrance_year = #{record.entranceYear,jdbcType=INTEGER},
-      dept_id = #{record.deptId,jdbcType=INTEGER}
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.Classroom">
-    update classroom
+  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.CourseTable">
+    update course_table
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="entranceYear != null">
-        entrance_year = #{entranceYear,jdbcType=INTEGER},
-      </if>
-      <if test="deptId != null">
-        dept_id = #{deptId,jdbcType=INTEGER},
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.Classroom">
-    update classroom
-    set name = #{name,jdbcType=VARCHAR},
-      entrance_year = #{entranceYear,jdbcType=INTEGER},
-      dept_id = #{deptId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.CourseTable">
+    update course_table
+    set start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

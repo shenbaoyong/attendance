@@ -1,8 +1,6 @@
 package com.shenbaoyong.attendance.pojo;
 
-import java.io.Serializable;
-
-public class AdminUser implements Serializable{
+public class AdminUser {
     private Long id;
 
     private String name;

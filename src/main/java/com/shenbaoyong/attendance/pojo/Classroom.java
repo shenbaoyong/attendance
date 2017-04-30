@@ -5,7 +5,9 @@ public class Classroom {
 
     private String name;
 
-    private Byte status;
+    private Integer entranceYear;
+
+    private Integer deptId;
 
     public Integer getId() {
         return id;
@@ -23,11 +25,19 @@ public class Classroom {
         this.name = name == null ? null : name.trim();
     }
 
-    public Byte getStatus() {
-        return status;
+    public Integer getEntranceYear() {
+        return entranceYear;
     }
 
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setEntranceYear(Integer entranceYear) {
+        this.entranceYear = entranceYear;
+    }
+
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 }

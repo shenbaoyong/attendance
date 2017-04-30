@@ -1,9 +1,9 @@
 package com.shenbaoyong.attendance.pojo;
 
-import java.io.Serializable;
-
-public class TeacherUser implements Serializable{
+public class TeacherUser {
     private Long id;
+
+    private Integer departmentId;
 
     private String name;
 
@@ -15,14 +15,20 @@ public class TeacherUser implements Serializable{
 
     private String password;
 
-    private Integer departmentId;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getName() {
@@ -63,13 +69,5 @@ public class TeacherUser implements Serializable{
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
     }
 }

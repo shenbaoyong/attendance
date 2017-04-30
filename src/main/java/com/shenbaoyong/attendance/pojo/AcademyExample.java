@@ -3,14 +3,14 @@ package com.shenbaoyong.attendance.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassroomExample {
+public class AcademyExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ClassroomExample() {
+    public AcademyExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -231,126 +231,6 @@ public class ClassroomExample {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearIsNull() {
-            addCriterion("entrance_year is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearIsNotNull() {
-            addCriterion("entrance_year is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearEqualTo(Integer value) {
-            addCriterion("entrance_year =", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearNotEqualTo(Integer value) {
-            addCriterion("entrance_year <>", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearGreaterThan(Integer value) {
-            addCriterion("entrance_year >", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearGreaterThanOrEqualTo(Integer value) {
-            addCriterion("entrance_year >=", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearLessThan(Integer value) {
-            addCriterion("entrance_year <", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearLessThanOrEqualTo(Integer value) {
-            addCriterion("entrance_year <=", value, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearIn(List<Integer> values) {
-            addCriterion("entrance_year in", values, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearNotIn(List<Integer> values) {
-            addCriterion("entrance_year not in", values, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearBetween(Integer value1, Integer value2) {
-            addCriterion("entrance_year between", value1, value2, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntranceYearNotBetween(Integer value1, Integer value2) {
-            addCriterion("entrance_year not between", value1, value2, "entranceYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIsNull() {
-            addCriterion("dept_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIsNotNull() {
-            addCriterion("dept_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdEqualTo(Integer value) {
-            addCriterion("dept_id =", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotEqualTo(Integer value) {
-            addCriterion("dept_id <>", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdGreaterThan(Integer value) {
-            addCriterion("dept_id >", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("dept_id >=", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdLessThan(Integer value) {
-            addCriterion("dept_id <", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdLessThanOrEqualTo(Integer value) {
-            addCriterion("dept_id <=", value, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdIn(List<Integer> values) {
-            addCriterion("dept_id in", values, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotIn(List<Integer> values) {
-            addCriterion("dept_id not in", values, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id between", value1, value2, "deptId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeptIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id not between", value1, value2, "deptId");
             return (Criteria) this;
         }
     }

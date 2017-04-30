@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class WeekExample {
+public class SemesterExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public WeekExample() {
+    public SemesterExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -189,126 +189,6 @@ public class WeekExample {
 
         public Criteria andIdNotBetween(Integer value1, Integer value2) {
             addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdIsNull() {
-            addCriterion("week_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdIsNotNull() {
-            addCriterion("week_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdEqualTo(Integer value) {
-            addCriterion("week_id =", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdNotEqualTo(Integer value) {
-            addCriterion("week_id <>", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdGreaterThan(Integer value) {
-            addCriterion("week_id >", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("week_id >=", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdLessThan(Integer value) {
-            addCriterion("week_id <", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdLessThanOrEqualTo(Integer value) {
-            addCriterion("week_id <=", value, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdIn(List<Integer> values) {
-            addCriterion("week_id in", values, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdNotIn(List<Integer> values) {
-            addCriterion("week_id not in", values, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdBetween(Integer value1, Integer value2) {
-            addCriterion("week_id between", value1, value2, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("week_id not between", value1, value2, "weekId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdIsNull() {
-            addCriterion("period_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdIsNotNull() {
-            addCriterion("period_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdEqualTo(Integer value) {
-            addCriterion("period_id =", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdNotEqualTo(Integer value) {
-            addCriterion("period_id <>", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdGreaterThan(Integer value) {
-            addCriterion("period_id >", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("period_id >=", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdLessThan(Integer value) {
-            addCriterion("period_id <", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdLessThanOrEqualTo(Integer value) {
-            addCriterion("period_id <=", value, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdIn(List<Integer> values) {
-            addCriterion("period_id in", values, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdNotIn(List<Integer> values) {
-            addCriterion("period_id not in", values, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdBetween(Integer value1, Integer value2) {
-            addCriterion("period_id between", value1, value2, "periodId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("period_id not between", value1, value2, "periodId");
             return (Criteria) this;
         }
 

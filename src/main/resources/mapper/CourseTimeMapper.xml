@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shenbaoyong.attendance.dao.PeriodMapper">
-  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.Period">
+<mapper namespace="com.shenbaoyong.attendance.dao.CourseTimeMapper">
+  <resultMap id="BaseResultMap" type="com.shenbaoyong.attendance.pojo.CourseTime">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="start_data" jdbcType="DATE" property="startData" />
-    <result column="end_data" jdbcType="DATE" property="endData" />
+    <result column="start_time" jdbcType="TIME" property="startTime" />
+    <result column="end_time" jdbcType="TIME" property="endTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,16 +65,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, start_data, end_data
+    id, start_time, end_time
   </sql>
-  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.PeriodExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTimeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from period
+    from course_time
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,67 +85,67 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from period
+    from course_time
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from period
+    delete from course_time
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.PeriodExample">
-    delete from period
+  <delete id="deleteByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTimeExample">
+    delete from course_time
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.Period">
-    insert into period (id, start_data, end_data
+  <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.CourseTime">
+    insert into course_time (id, start_time, end_time
       )
-    values (#{id,jdbcType=INTEGER}, #{startData,jdbcType=DATE}, #{endData,jdbcType=DATE}
+    values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.Period">
-    insert into period
+  <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.CourseTime">
+    insert into course_time
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="startData != null">
-        start_data,
+      <if test="startTime != null">
+        start_time,
       </if>
-      <if test="endData != null">
-        end_data,
+      <if test="endTime != null">
+        end_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="startData != null">
-        #{startData,jdbcType=DATE},
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
       </if>
-      <if test="endData != null">
-        #{endData,jdbcType=DATE},
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIME},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.PeriodExample" resultType="java.lang.Long">
-    select count(*) from period
+  <select id="countByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseTimeExample" resultType="java.lang.Long">
+    select count(*) from course_time
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update period
+    update course_time
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.startData != null">
-        start_data = #{record.startData,jdbcType=DATE},
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIME},
       </if>
-      <if test="record.endData != null">
-        end_data = #{record.endData,jdbcType=DATE},
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIME},
       </if>
     </set>
     <if test="_parameter != null">
@@ -153,30 +153,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update period
+    update course_time
     set id = #{record.id,jdbcType=INTEGER},
-      start_data = #{record.startData,jdbcType=DATE},
-      end_data = #{record.endData,jdbcType=DATE}
+      start_time = #{record.startTime,jdbcType=TIME},
+      end_time = #{record.endTime,jdbcType=TIME}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.Period">
-    update period
+  <update id="updateByPrimaryKeySelective" parameterType="com.shenbaoyong.attendance.pojo.CourseTime">
+    update course_time
     <set>
-      <if test="startData != null">
-        start_data = #{startData,jdbcType=DATE},
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIME},
       </if>
-      <if test="endData != null">
-        end_data = #{endData,jdbcType=DATE},
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIME},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.Period">
-    update period
-    set start_data = #{startData,jdbcType=DATE},
-      end_data = #{endData,jdbcType=DATE}
+  <update id="updateByPrimaryKey" parameterType="com.shenbaoyong.attendance.pojo.CourseTime">
+    update course_time
+    set start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -194,4 +194,8 @@
       dept_id = #{deptId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="quaryAll" resultType="com.shenbaoyong.attendance.pojo.Classroom">
+    select * from classroom   limit #{offset}, #{limit}
+  </select>
 </mapper>

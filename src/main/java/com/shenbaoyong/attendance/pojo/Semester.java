@@ -2,12 +2,8 @@ package com.shenbaoyong.attendance.pojo;
 
 import java.util.Date;
 
-public class Week {
+public class Semester {
     private Integer id;
-
-    private Integer weekId;
-
-    private Integer periodId;
 
     private Date startData;
 
@@ -19,22 +15,6 @@ public class Week {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getWeekId() {
-        return weekId;
-    }
-
-    public void setWeekId(Integer weekId) {
-        this.weekId = weekId;
-    }
-
-    public Integer getPeriodId() {
-        return periodId;
-    }
-
-    public void setPeriodId(Integer periodId) {
-        this.periodId = periodId;
     }
 
     public Date getStartData() {

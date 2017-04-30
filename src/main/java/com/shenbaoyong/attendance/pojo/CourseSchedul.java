@@ -7,9 +7,9 @@ public class CourseSchedul {
 
     private Integer courseId;
 
-    private Integer periodId;
+    private Integer semesterId;
 
-    private String courseTableId;
+    private String courseTimeId;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class CourseSchedul {
         this.courseId = courseId;
     }
 
-    public Integer getPeriodId() {
-        return periodId;
+    public Integer getSemesterId() {
+        return semesterId;
     }
 
-    public void setPeriodId(Integer periodId) {
-        this.periodId = periodId;
+    public void setSemesterId(Integer semesterId) {
+        this.semesterId = semesterId;
     }
 
-    public String getCourseTableId() {
-        return courseTableId;
+    public String getCourseTimeId() {
+        return courseTimeId;
     }
 
-    public void setCourseTableId(String courseTableId) {
-        this.courseTableId = courseTableId == null ? null : courseTableId.trim();
+    public void setCourseTimeId(String courseTimeId) {
+        this.courseTimeId = courseTimeId == null ? null : courseTimeId.trim();
     }
 }

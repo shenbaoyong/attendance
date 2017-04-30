@@ -5,8 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="class_ids" jdbcType="VARCHAR" property="classIds" />
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
-    <result column="period_id" jdbcType="INTEGER" property="periodId" />
-    <result column="course_table_id" jdbcType="VARCHAR" property="courseTableId" />
+    <result column="semester_id" jdbcType="INTEGER" property="semesterId" />
+    <result column="course_time_id" jdbcType="VARCHAR" property="courseTimeId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, class_ids, course_id, period_id, course_table_id
+    id, class_ids, course_id, semester_id, course_time_id
   </sql>
   <select id="selectByExample" parameterType="com.shenbaoyong.attendance.pojo.CourseSchedulExample" resultMap="BaseResultMap">
     select
@@ -102,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="com.shenbaoyong.attendance.pojo.CourseSchedul">
     insert into course_schedul (id, class_ids, course_id, 
-      period_id, course_table_id)
+      semester_id, course_time_id)
     values (#{id,jdbcType=INTEGER}, #{classIds,jdbcType=VARCHAR}, #{courseId,jdbcType=INTEGER}, 
-      #{periodId,jdbcType=INTEGER}, #{courseTableId,jdbcType=VARCHAR})
+      #{semesterId,jdbcType=INTEGER}, #{courseTimeId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shenbaoyong.attendance.pojo.CourseSchedul">
     insert into course_schedul
@@ -118,11 +118,11 @@
       <if test="courseId != null">
         course_id,
       </if>
-      <if test="periodId != null">
-        period_id,
+      <if test="semesterId != null">
+        semester_id,
       </if>
-      <if test="courseTableId != null">
-        course_table_id,
+      <if test="courseTimeId != null">
+        course_time_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -135,11 +135,11 @@
       <if test="courseId != null">
         #{courseId,jdbcType=INTEGER},
       </if>
-      <if test="periodId != null">
-        #{periodId,jdbcType=INTEGER},
+      <if test="semesterId != null">
+        #{semesterId,jdbcType=INTEGER},
       </if>
-      <if test="courseTableId != null">
-        #{courseTableId,jdbcType=VARCHAR},
+      <if test="courseTimeId != null">
+        #{courseTimeId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -161,11 +161,11 @@
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=INTEGER},
       </if>
-      <if test="record.periodId != null">
-        period_id = #{record.periodId,jdbcType=INTEGER},
+      <if test="record.semesterId != null">
+        semester_id = #{record.semesterId,jdbcType=INTEGER},
       </if>
-      <if test="record.courseTableId != null">
-        course_table_id = #{record.courseTableId,jdbcType=VARCHAR},
+      <if test="record.courseTimeId != null">
+        course_time_id = #{record.courseTimeId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -177,8 +177,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       class_ids = #{record.classIds,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=INTEGER},
-      period_id = #{record.periodId,jdbcType=INTEGER},
-      course_table_id = #{record.courseTableId,jdbcType=VARCHAR}
+      semester_id = #{record.semesterId,jdbcType=INTEGER},
+      course_time_id = #{record.courseTimeId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -192,11 +192,11 @@
       <if test="courseId != null">
         course_id = #{courseId,jdbcType=INTEGER},
       </if>
-      <if test="periodId != null">
-        period_id = #{periodId,jdbcType=INTEGER},
+      <if test="semesterId != null">
+        semester_id = #{semesterId,jdbcType=INTEGER},
       </if>
-      <if test="courseTableId != null">
-        course_table_id = #{courseTableId,jdbcType=VARCHAR},
+      <if test="courseTimeId != null">
+        course_time_id = #{courseTimeId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -205,8 +205,8 @@
     update course_schedul
     set class_ids = #{classIds,jdbcType=VARCHAR},
       course_id = #{courseId,jdbcType=INTEGER},
-      period_id = #{periodId,jdbcType=INTEGER},
-      course_table_id = #{courseTableId,jdbcType=VARCHAR}
+      semester_id = #{semesterId,jdbcType=INTEGER},
+      course_time_id = #{courseTimeId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

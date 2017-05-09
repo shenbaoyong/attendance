@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<div>
+    <span th:text="${msg}" style="width: 100px; height: 40px; margin-right: 300px; margin-top: 10px;">666</span>
+</div>
+<div style="margin-top: 50px;">
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>班级名</th>
+                <th>课程名</th>
+                <th>教师名</th>
+                <th>上课时间(第几节课)</th>
+                <th>上课时间(周几)</th>
+                <th>详情</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course : ${courseList}">
+                <td th:text="${course.classroomName}">Onions</td>
+                <td th:text="${course.courseName}">Onions</td>
+                <td th:text="${course.teacherName}">Onions</td>
+                <td th:text="${course.courseTimeId}">2.41</td>
+                <td th:text="${course.dayOfWeek}">Onions</td>
+                <td ><a href="http://www.baidu.com" th:href="@{http://localhost:8081}">详情</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

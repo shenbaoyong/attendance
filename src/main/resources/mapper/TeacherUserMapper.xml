@@ -241,4 +241,16 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectCourseListOfTeacher" parameterType="java.lang.Long" resultType="com.shenbaoyong.attendance.pojo.CourseListVO">
+    SELECT
+    `teacher_name` teacherName,
+    `classroom_name` classroomName,
+    `course_name` courseName,
+    `course_time_id` courseTimeId,
+    `day_of_week` dayOfWeek,
+    `course_schedul_id` courseSchedulId
+    FROM
+    course_list
+  </select>
 </mapper>

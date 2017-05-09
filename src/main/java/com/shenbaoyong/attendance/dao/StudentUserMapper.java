@@ -1,5 +1,7 @@
 package com.shenbaoyong.attendance.dao;
 
+import com.shenbaoyong.attendance.pojo.CourseListVO;
+import com.shenbaoyong.attendance.pojo.CourseSchedul;
 import com.shenbaoyong.attendance.pojo.StudentUser;
 import com.shenbaoyong.attendance.pojo.StudentUserExample;
 import java.util.List;
@@ -27,4 +29,6 @@ public interface StudentUserMapper {
     int updateByPrimaryKeySelective(StudentUser record);
 
     int updateByPrimaryKey(StudentUser record);
+
+    List<CourseListVO> selectCourseListOfStudent(Long id);
 }

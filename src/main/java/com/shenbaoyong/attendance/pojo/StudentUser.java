@@ -1,6 +1,9 @@
 package com.shenbaoyong.attendance.pojo;
 
-public class StudentUser {
+import java.io.Serializable;
+import java.util.List;
+
+public class StudentUser implements Serializable{
     private Long id;
 
     private Integer classroomId;
@@ -70,4 +73,5 @@ public class StudentUser {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
 }

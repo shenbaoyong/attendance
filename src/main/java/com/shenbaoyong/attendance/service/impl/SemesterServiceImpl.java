@@ -4,13 +4,16 @@ import com.shenbaoyong.attendance.dao.SemesterMapper;
 import com.shenbaoyong.attendance.pojo.Semester;
 import com.shenbaoyong.attendance.pojo.SemesterExample;
 import com.shenbaoyong.attendance.service.ISemesterService;
+import org.hibernate.validator.constraints.ScriptAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Shen Baoyong on 2017/4/30.
  */
+@Service
 public class SemesterServiceImpl implements ISemesterService{
 
     @Autowired

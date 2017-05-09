@@ -3,8 +3,11 @@ package com.shenbaoyong.attendance.controller;
 import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.constents.UserConstants;
 import com.shenbaoyong.attendance.dto.BaseResult;
+import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.UserVO;
 import com.shenbaoyong.attendance.service.IAccountService;
+import com.shenbaoyong.attendance.service.IStudentUserService;
+import com.shenbaoyong.attendance.service.ITeacherUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +31,10 @@ public class AccountController {
     SessionComponent sessionComponent;
     @Autowired
     IAccountService accountService;
+    @Autowired
+    IStudentUserService studentUserService;
+    @Autowired
+    ITeacherUserService teacherUserService;
 
     @PostMapping("/login")
     public String login(UserVO userVO, Model model){
@@ -39,7 +47,17 @@ public class AccountController {
             if(result.isSuccess()){
                 String welcomMsg = sessionComponent.getLoginUser().getWelcomMsg();
                 model.addAttribute("msg", welcomMsg);
-                return "helloHtml";
+                if(sessionComponent.getLoginUser().hasStudentUser()){
+                    List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(1304030221L);
+                    model.addAttribute("courseList", courseListVOList);
+                    return "studentCourseList";
+                }else if(sessionComponent.getLoginUser().hasTeacherUser()){
+                    List<CourseListVO> courseListVOList = teacherUserService.getCourseListOfTeacher(1304030221L);
+                    model.addAttribute("courseList", courseListVOList);
+                    return "teacherCourseList";
+                }else if (sessionComponent.getLoginUser().hasAdminUser()){
+                    return "adminMainPage";
+                }
             }
             model.addAttribute("msg", result.getError());
             return "index";

@@ -28,4 +28,45 @@ public class StudentUserServiceImpl implements IStudentUserService{
     public List<CourseListVO> getCourseListOfStudent(Long id) {
         return studentUserMapper.selectCourseListOfStudent(id);
     }
+
+    @Override
+    public boolean deleteStudentById(Long id) {
+        try{
+            studentUserMapper.deleteByPrimaryKey(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean modifyStudent(StudentUser studentUser) {
+        try {
+            studentUserMapper.updateByPrimaryKey(studentUser);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean addStudentUser(StudentUser studentUser) {
+        try{
+            studentUser.setId(null);
+            studentUserMapper.insertSelective(studentUser);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public List<StudentUser> getStudentUserList() {
+        try{
+            return studentUserMapper.selectStudentUserList();
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

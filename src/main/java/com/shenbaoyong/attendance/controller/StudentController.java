@@ -11,16 +11,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Shen Baoyong on 2017/4/30.
  */
 @Controller
-@RequestMapping("/student/course")
+@RequestMapping("/student")
 public class StudentController {
 
     Logger logger = LoggerFactory.getLogger(StudentController.class);
@@ -30,13 +34,40 @@ public class StudentController {
     @Autowired
     IStudentUserService studentUserService;
 
+
     @RequestMapping("/list")
-    public String courseList(Model model){
-////        LoginUser loginUser = sessionComponent.getLoginUser();
-////        StudentUser studentUser = loginUser.getStudentUser();
-//        List<CourseListVO> courseListOfStudent = studentUserService.getCourseListOfStudent(1304030221L);
-//        model.addAttribute("courseList", courseListOfStudent);
-        return "studentCourseList";
+    public String getStudentList(@RequestBody Map<String, Object> params,  Model model){
+        List<StudentUser> studentUserList = studentUserService.getStudentUserList();
+        model.addAttribute("studentList", studentUserList);
+        return "studentList";
+    }
+
+    @RequestMapping("/add")
+    public String addStudent(StudentUser studentUser ,  Model model){
+        studentUser.setId(null);
+        studentUserService.addStudentUser(studentUser);
+        List<StudentUser> studentUserList = studentUserService.getStudentUserList();
+        model.addAttribute("studentList", studentUserList);
+        return "studentList";
+    }
+
+    @RequestMapping("/delete")
+    public String deleteStudent(@RequestParam("id") String id , Model model){
+        if(StringUtils.isEmpty(id)){
+            id = "0";
+        }
+        studentUserService.deleteStudentById(Long.parseLong(id));
+        List<StudentUser> studentUserList = studentUserService.getStudentUserList();
+        model.addAttribute("studentList", studentUserList);
+        return "studentList";
+    }
+
+    @RequestMapping("/modify")
+    public String modifyStudent(StudentUser student,  Model model){
+        studentUserService.modifyStudent(student);
+        List<StudentUser> studentUserList = studentUserService.getStudentUserList();
+        model.addAttribute("studentList", studentUserList);
+        return "studentList";
     }
 
 }

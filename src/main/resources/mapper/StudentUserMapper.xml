@@ -243,7 +243,6 @@
   </update>
 
   <select id="selectCourseListOfStudent" parameterType="java.lang.Long" resultType="com.shenbaoyong.attendance.pojo.CourseListVO">
-
     SELECT
     `teacher_name` teacherName,
     `classroom_name` classroomName,
@@ -253,6 +252,10 @@
     `course_schedul_id` courseSchedulId
     FROM
     course_list
+  </select>
+
+  <select id="selectStudentUserList" resultMap="BaseResultMap">
+    select * from student
   </select>
 
 </mapper>

@@ -31,4 +31,6 @@ public interface StudentUserMapper {
     int updateByPrimaryKey(StudentUser record);
 
     List<CourseListVO> selectCourseListOfStudent(Long id);
+
+    List<StudentUser> selectStudentUserList();
 }

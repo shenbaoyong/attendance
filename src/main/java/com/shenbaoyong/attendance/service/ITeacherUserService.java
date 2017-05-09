@@ -11,4 +11,12 @@ import java.util.List;
 public interface ITeacherUserService {
     TeacherUser getTeacherUserById(Long id);
     List<CourseListVO> getCourseListOfTeacher(Long id);
+
+    boolean addTeacherUser(TeacherUser teacherUser);
+
+    List<TeacherUser> getTeacherUserList();
+
+    boolean deleteTeacherById(long id);
+
+    boolean modifyStudent(TeacherUser teacherUser);
 }

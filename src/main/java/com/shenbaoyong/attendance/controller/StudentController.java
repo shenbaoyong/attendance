@@ -2,6 +2,7 @@ package com.shenbaoyong.attendance.controller;
 
 import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.pojo.LoginUser;
+import com.shenbaoyong.attendance.pojo.CourseList;
 import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.CourseSchedul;
 import com.shenbaoyong.attendance.pojo.StudentUser;
@@ -34,6 +35,19 @@ public class StudentController {
     @Autowired
     IStudentUserService studentUserService;
 
+    @RequestMapping("/course/list")
+    public String getStudentCourseList(String week,  Model model){
+
+        if(StringUtils.isEmpty(week) || "0".equals(week)){
+            List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(1304030221L);
+            model.addAttribute("courseList", courseListVOList);
+        }else {
+            List<CourseList> courseListVOList =  studentUserService.getCourseListOfStudent(1304030221L,Integer.parseInt(week));
+            model.addAttribute("courseList", courseListVOList);
+        }
+        model.addAttribute("msg", "星期" + week +  " 的课程");
+        return "studentCourseList";
+    }
 
     @RequestMapping("/list")
     public String getStudentList(@RequestBody Map<String, Object> params,  Model model){
@@ -68,6 +82,15 @@ public class StudentController {
         List<StudentUser> studentUserList = studentUserService.getStudentUserList();
         model.addAttribute("studentList", studentUserList);
         return "studentList";
+    }
+
+    @RequestMapping("/course/detail")
+    public String getCourseDetail(Integer courseSchedulId,  Model model){
+        //studentUserService.modifyStudent(student);
+        //List<StudentUser> studentUserList = studentUserService.getStudentUserList();
+        model.addAttribute("id", courseSchedulId);
+
+        return "studentACourseAttendanceInfo";
     }
 
 }

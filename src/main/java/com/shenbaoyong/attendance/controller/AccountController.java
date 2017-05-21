@@ -77,6 +77,4 @@ public class AccountController {
             return BaseResult.error("退出失败");
         }
     }
-
-
 }

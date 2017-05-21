@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+
+<div>
+    <select style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;">
+        <option>未选择</option>
+        <option>第1周</option>
+        <option>第2周</option>
+        <option>第3周</option>
+        <option>第4周</option>
+        <option>第5周</option>
+        <option>第6周</option>
+        <option>第7周</option>
+        <option>第8周</option>
+        <option>第9周</option>
+        <option>第10周</option>
+        <option>第11周</option>
+        <option>第12周</option>
+        <option>第13周</option>
+        <option>第14周</option>
+        <option>第15周</option>
+        <option>第16周</option>
+        <option>第17周</option>
+        <option>第18周</option>
+    </select>
+    <button style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;">查询</button>
+    <span   style="width: 100px; height: 40px; margin-right: 200px; margin-top: 10px;"
+            th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}">666</span>
+</div>
+<div>
+    <span th:text="${id}">666</span>
+</div>
+<div style="margin-top: 50px;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>周次</th>
+            <th>课程名</th>
+            <th>上课时间(第几节课)</th>
+            <th>学生姓名</th>
+            <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

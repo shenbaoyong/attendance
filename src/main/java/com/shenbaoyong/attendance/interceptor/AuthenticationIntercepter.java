@@ -54,9 +54,10 @@ public class AuthenticationIntercepter implements HandlerInterceptor{
 
         LoginUser loginUser = sessionComponent.getLoginUser();
         if (loginUser == null){
-            httpServletResponse.setContentType("application/json;charset=UTF-8");
-            String json = JsonUtils.objectToJson(BaseResult.error("请登录"));
-            httpServletResponse.getWriter().print(json);
+            //httpServletResponse.setContentType("application/json;charset=UTF-8");
+            //String json = JsonUtils.objectToJson(BaseResult.error("请登录"));
+            //httpServletResponse.getWriter().print(json);
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
             return false;
         }
         if (loginUser.hasStudentUser()){
@@ -74,6 +75,7 @@ public class AuthenticationIntercepter implements HandlerInterceptor{
             logger.info("-------------------------------loginUser:" + adminUser.getId() + "--" + adminUser.getName() + "---------------------------");
             return true;
         }
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
         return false;  //todo 这儿返回？？？？ true还是false呢
     }
 

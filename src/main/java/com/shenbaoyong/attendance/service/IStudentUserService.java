@@ -1,9 +1,11 @@
 package com.shenbaoyong.attendance.service;
 
+import com.shenbaoyong.attendance.pojo.CourseList;
 import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.CourseSchedul;
 import com.shenbaoyong.attendance.pojo.StudentUser;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.logging.Log;
 import org.assertj.core.error.ShouldBeSymbolicLink;
 
 import javax.swing.text.StyledEditorKit;
@@ -17,6 +19,8 @@ public interface IStudentUserService {
     StudentUser getStudentUserById(Long id);
 
     List<CourseListVO> getCourseListOfStudent(Long id);
+
+    List<CourseList> getCourseListOfStudent(Long id, int dayOfWeek);
 
     boolean deleteStudentById(Long id);
 

@@ -1,9 +1,9 @@
 package com.shenbaoyong.attendance.service.impl;
 
+import com.alibaba.druid.support.logging.Log;
+import com.shenbaoyong.attendance.dao.CourseListMapper;
 import com.shenbaoyong.attendance.dao.StudentUserMapper;
-import com.shenbaoyong.attendance.pojo.CourseListVO;
-import com.shenbaoyong.attendance.pojo.CourseSchedul;
-import com.shenbaoyong.attendance.pojo.StudentUser;
+import com.shenbaoyong.attendance.pojo.*;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,8 @@ public class StudentUserServiceImpl implements IStudentUserService{
 
     @Autowired
     StudentUserMapper studentUserMapper;
+    @Autowired
+    CourseListMapper courseListMapper;
 
     @Override
     public StudentUser getStudentUserById(Long id) {
@@ -27,6 +29,14 @@ public class StudentUserServiceImpl implements IStudentUserService{
     @Override
     public List<CourseListVO> getCourseListOfStudent(Long id) {
         return studentUserMapper.selectCourseListOfStudent(id);
+    }
+
+    @Override
+    public List<CourseList> getCourseListOfStudent(Long id, int dayOfWeek) {
+        CourseListExample example = new CourseListExample();
+        CourseListExample.Criteria criteria = example.createCriteria();
+        criteria.andDayOfWeekEqualTo(dayOfWeek);
+        return courseListMapper.selectByExample(example);
     }
 
     @Override

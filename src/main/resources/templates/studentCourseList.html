@@ -10,18 +10,21 @@
 <body>
 <div>
     <form class="form-horizontal" action="/student/course/list" method="post">
-        <select style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;">
-            <option>未选择</option>
-            <option>星期一</option>
-            <option>星期二</option>
-            <option>星期二</option>
-            <option>星期四</option>
-            <option>星期五</option>
+        <select style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;" name="week">
+            <option value="0">未选择</option>
+            <option value="1">星期一</option>
+            <option value="2">星期二</option>
+            <option value="3">星期二</option>
+            <option value="4">星期四</option>
+            <option value="5">星期五</option>
         </select>
         <input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
-        <span th:text="${msg}" style="width: 100px; height: 40px; margin-left: 200px; margin-top: 10px;">666</span>
+        <span th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}" style="width: 100px; height: 40px; margin-left: 200px; margin-top: 10px;">666</span>
     </form>
 
+</div>
+<div>
+    <span th:text="${msg}" style="width: 100px; height: 40px; margin-left: 200px; margin-top: 10px;">666</span>
 </div>
 <div style="margin-top: 50px;">
     <div class="container">
@@ -43,7 +46,7 @@
             <td th:text="${course.teacherName}">Onions</td>
             <td th:text="${course.courseTimeId}">2.41</td>
             <td th:text="${course.dayOfWeek}">Onions</td>
-            <td ><a href="http://www.baidu.com" th:href="@{http://localhost:8081}">详情</a></td>
+            <td ><a href="http://www.baidu.com" th:href="@{/student/course/detail(courseSchedulId=${course.courseSchedulId})}">详情</a></td>
         </tr>
         </tbody>
     </table>

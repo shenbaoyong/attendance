@@ -3,13 +3,17 @@ package com.shenbaoyong.attendance.pojo;
 public class CourseSchedul {
     private Integer id;
 
-    private String classIds;
+    private Integer classId;
 
     private Integer courseId;
 
     private Integer semesterId;
 
     private String courseTimeId;
+
+    private Integer dayOfWeek;
+
+    private Integer teacherId;
 
     public Integer getId() {
         return id;
@@ -19,12 +23,12 @@ public class CourseSchedul {
         this.id = id;
     }
 
-    public String getClassIds() {
-        return classIds;
+    public Integer getClassId() {
+        return classId;
     }
 
-    public void setClassIds(String classIds) {
-        this.classIds = classIds == null ? null : classIds.trim();
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 
     public Integer getCourseId() {
@@ -49,5 +53,21 @@ public class CourseSchedul {
 
     public void setCourseTimeId(String courseTimeId) {
         this.courseTimeId = courseTimeId == null ? null : courseTimeId.trim();
+    }
+
+    public Integer getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(Integer dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 }

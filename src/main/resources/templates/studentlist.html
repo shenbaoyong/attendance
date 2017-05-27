@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" /> 
+		<meta charset="UTF-8" />
+		<title>学生列表</title>
+	</head>
+	<body>
+	<div style="margin-top: 50px;">
+		<div>
+			<a href="/goto/addStudentPage">增加一个学生</a>
+		</div>
+		<form action="/student/list" method="post">
+			班级：<select name="classroom_id">
+			<option value="2">软件132</option>
+			<option value="3">软件131</option>
+			<option value="4">软件133</option>
+			<option value="5">计算131</option>
+			<option value="6">金融131</option>
+			<option value="7">金融132</option>
+		</select>
+			<input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
+			<br />
+		</form>
+
+
+	</div>
+		<div style="margin-top: 50px;">
+			<table class="table">
+				<thead>  
+		            <tr>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>班级</th>
+					<th>性别</th>
+				</tr>
+		        </thead>  
+				<tbody> 
+				<tr th:each="student : ${studentList}">
+					<td th:text="${student.id}">Onions</td>
+					<td th:text="${student.name}">2.41</td>
+					<td th:text="${student.classroomId}">Onions</td>
+					<td th:text="${student.sex}">Onions</td>
+					<td ><a href="http://www.baidu.com" th:href="@{/goto/modifyStudentPage(id=${student.id})}">修改</a></td>
+					<td ><a href="http://www.baidu.com" th:href="@{/student/delete(id=${student.id})}">删除</a></td>
+				</tr>
+
+				</tbody> 
+			</table>		
+		</div>
+	</body>
+</html>

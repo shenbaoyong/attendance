@@ -45,19 +45,19 @@ public class StudentController {
     }
 
     @RequestMapping("/list")
-    public String getStudentList(@RequestBody Map<String, Object> params,  Model model){
-        if(StringUtils.isEmpty(params) || StringUtils.isEmpty(params.get("classroom_id"))){
-            return "studentList";
+    public String getStudentList(@RequestParam("classroom_id") String classroomId,  Model model){
+        if(StringUtils.isEmpty(classroomId)){
+            return "studentlist";
         }
-        String classroomId = (String)params.get("classroom_id");
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(Integer.parseInt(classroomId));
         model.addAttribute("studentList", studentUserList);
-        return "studentList";
+        return "studentlist";
     }
 
     @RequestMapping("/add")
     public String addStudent(StudentUser studentUser ,  Model model) {
-        return null;
+        studentUserService.addStudentUser(studentUser);
+        return "studentlist";
     }
 
     @RequestMapping("/delete")
@@ -65,8 +65,8 @@ public class StudentController {
         if(StringUtils.isEmpty(id)){
             id = "0";
         }
-        studentUserService.deleteStudentById(Long.parseLong(id));
         StudentUser studentUser = studentUserService.getStudentUserById(Long.parseLong(id));
+        studentUserService.deleteStudentById(Long.parseLong(id));
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(studentUser.getClassroomId());
         model.addAttribute("studentList", studentUserList);
         return "studentList";

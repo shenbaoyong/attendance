@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>增加一个新学生</title>
+	</head>
+	<body>
+		<div id="div1">
+			<div>
+			<a href="../classroom/classroomlist.html">返回</a>
+			</div>
+			<form id="form1" action="/student/add" method="post">
+				学号：<input type="text" name="id"/><br />
+				班级：<select name="classroomId">
+						<option value="2">软件132</option>
+						<option value="3">软件131</option>
+						<option value="4">软件133</option>
+						<option value="5">计算131</option>
+						<option value="6">金融131</option>
+						<option value="7">金融132</option>
+					</select> <br />
+				姓名：<input type="text" name="name"/><br />
+				性别：<input type="radio" name="sex" value="0" checked="true" />男      <input type="radio" name="sex" value="0" />女            <br />
+				密码：<input type="text" name="password"/><br />
+				手机号：<input type="text" name="phone"/><br />
+				邮箱：<input type="text" name="email"/><br />
+				<button type="submit">增加</button><br />	
+			</form>	
+		</div>
+		
+		
+	</body>
+	<style>
+		#div1{
+			margin-left: 400px;
+			margin-top: 100px;
+		}
+	</style>
+</html>

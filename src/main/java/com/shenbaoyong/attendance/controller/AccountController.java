@@ -56,7 +56,7 @@ public class AccountController {
                     model.addAttribute("courseList", courseListVOList);
                     return "teacherCourseList";
                 }else if (sessionComponent.getLoginUser().hasAdminUser()){
-                    return "adminMainPage";
+                    return "adminpage";
                 }
             }
             model.addAttribute("msg", result.getError());

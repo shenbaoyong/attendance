@@ -64,7 +64,6 @@ public class StudentUserServiceImpl implements IStudentUserService{
     @Override
     public boolean addStudentUser(StudentUser studentUser) {
         try{
-            studentUser.setId(null);
             studentUserMapper.insertSelective(studentUser);
             return true;
         }catch (Exception e){

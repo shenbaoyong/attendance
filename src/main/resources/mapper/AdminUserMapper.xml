@@ -224,4 +224,12 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="selectAdminUserByPhone" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where phone = #{phone,jdbcType=BIGINT}
+  </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.shenbaoyong.attendance.service.impl;
 import com.alibaba.druid.support.logging.Log;
 import com.shenbaoyong.attendance.dao.CourseListMapper;
 import com.shenbaoyong.attendance.dao.StudentUserMapper;
+import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.*;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,11 +73,28 @@ public class StudentUserServiceImpl implements IStudentUserService{
     }
 
     @Override
-    public List<StudentUser> getStudentUserList() {
+    public List<StudentUser> getStudentUserList(Integer classroomId) {
         try{
-            return studentUserMapper.selectStudentUserList();
+            StudentUserExample studentUserExample = new StudentUserExample();
+            StudentUserExample.Criteria criteria = studentUserExample.createCriteria();
+            criteria.andClassroomIdEqualTo(classroomId);
+            return studentUserMapper.selectByExample(studentUserExample);
         }catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public BaseResult changePassword(Long studentId, String oldPassword, String newPassword, String newPasswordRepeat) {
+        StudentUser studentUser = studentUserMapper.selectByPrimaryKey(studentId);
+        if(!studentUser.getPassword().equals(oldPassword)){
+            return BaseResult.error("旧密码不正确");
+        }
+        if (!newPassword.equals(newPasswordRepeat)){
+            return BaseResult.error("两个新密码不一致");
+        }
+        studentUser.setPassword(newPassword);
+        studentUserMapper.updateByPrimaryKeySelective(studentUser);
+        return BaseResult.ok("更新密码成功");
     }
 }

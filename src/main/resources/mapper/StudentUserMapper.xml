@@ -257,5 +257,11 @@
   <select id="selectStudentUserList" resultMap="BaseResultMap">
     select * from student
   </select>
+  <select id="selectStudentUserByPhone" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where phone = #{phone,jdbcType=BIGINT}
+  </select>
 
 </mapper>

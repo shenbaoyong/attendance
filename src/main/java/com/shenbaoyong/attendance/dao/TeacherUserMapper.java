@@ -30,4 +30,6 @@ public interface TeacherUserMapper {
     int updateByPrimaryKey(TeacherUser record);
 
     List<CourseListVO> selectCourseListOfTeacher(Long id);
+
+    TeacherUser selectTeacherUserByPhone(Long phone);
 }

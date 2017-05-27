@@ -20,6 +20,8 @@
         </select>
         <input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
         <span th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}" style="width: 100px; height: 40px; margin-left: 200px; margin-top: 10px;">666</span>
+        <a th:href="@{/student/changePassword}">修改密码</a>&nbsp;
+        <a th:href="@{/account/logout}">退出</a>
     </form>
 
 </div>

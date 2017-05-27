@@ -20,6 +20,8 @@ public class SpringWebMvcConfigAdapter extends WebMvcConfigurerAdapter{
                 .addPathPatterns("/**")
                 .excludePathPatterns("/")
                 .excludePathPatterns("/test/**")
+                .excludePathPatterns("/sendCode")
+                .excludePathPatterns("/getbackPassword")
                 .excludePathPatterns("/account/login");
     }
 }

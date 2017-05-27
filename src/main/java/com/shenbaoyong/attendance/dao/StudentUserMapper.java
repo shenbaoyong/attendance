@@ -33,4 +33,6 @@ public interface StudentUserMapper {
     List<CourseListVO> selectCourseListOfStudent(Long id);
 
     List<StudentUser> selectStudentUserList();
+
+    StudentUser selectStudentUserByPhone(Long phone);
 }

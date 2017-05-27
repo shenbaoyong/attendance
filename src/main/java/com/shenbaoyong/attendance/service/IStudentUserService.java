@@ -1,5 +1,6 @@
 package com.shenbaoyong.attendance.service;
 
+import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.CourseList;
 import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.CourseSchedul;
@@ -28,6 +29,7 @@ public interface IStudentUserService {
 
     boolean addStudentUser(StudentUser studentUser);
 
-    List<StudentUser> getStudentUserList();
+    List<StudentUser> getStudentUserList(Integer classroomId);
 
+    BaseResult changePassword(Long studentId, String oldPassword, String newPassword, String newPasswordRepeat);
 }

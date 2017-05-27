@@ -253,4 +253,12 @@
     FROM
     course_list
   </select>
+
+
+  <select id="selectTeacherUserByPhone" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where phone = #{phone,jdbcType=BIGINT}
+  </select>
 </mapper>

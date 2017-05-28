@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" /> 
+		<meta charset="UTF-8" />
+		<title>学生列表</title>
+	</head>
+	<body>
+	<div style="margin-top: 50px;">
+		<div>
+			<a href="/goto/addTeacherPage">增加一个教师</a>
+		</div>
+		<form action="/teacher/list" method="post">
+			班级：<select name="departmentId"  th:remove="all-but-first">
+					<option th:each="dept : ${session.deptlist}"
+						th:value="${dept.id}" th:text="${dept.name}">Credit card</option>
+					<option>Another payment method</option>
+					<option>Another payment method</option>
+				</select>
+			<input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
+			<br />
+		</form>
+	</div>
+		<div style="margin-top: 50px;">
+			<table class="table">
+				<thead>  
+		            <tr>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>专业</th>
+					<th>性别</th>
+				</tr>
+		        </thead>  
+				<tbody> 
+				<tr th:each="teacher : ${teacherList}">
+					<td th:text="${teacher.id}">Onions</td>
+					<td th:text="${teacher.name}">2.41</td>
+					<td th:text="${deptName}">Onions</td>
+					<td th:text="( (${teacher.sex})? '女' : '男')">Onions</td>
+					<td ><a href="http://www.baidu.com" th:href="@{/goto/modifyTeacherPage(id=${teacher.id})}">修改</a></td>
+					<td ><a href="http://www.baidu.com" th:href="@{/teacher/delete(id=${teacher.id})}">删除</a></td>
+				</tr>
+
+				</tbody> 
+			</table>		
+		</div>
+	</body>
+</html>

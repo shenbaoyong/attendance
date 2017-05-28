@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>修改教师信息</title>
+	</head>
+	<body>
+		<div id="div1">
+			<div>
+			<a href="/goto/teacherlist">返回</a>
+			</div>
+			<form id="form1" action="/teacher/modify" method="post" th:object="${teacher}">
+				学号：<input th:field="*{id}" type="text" name="id" readonly="true"/><br /><br />
+				专业：<select name="departmentId"  th:remove="all-but-first">
+						<option th:each="dept : ${session.deptlist}"
+							th:value="${dept.id}" th:text="${dept.name}">Credit card</option>
+						<option>Another payment method</option>
+						<option>Another payment method</option>
+					</select> <br /><br />
+
+				姓名：<input th:field="*{name}" type="text" name="name"/><br /><br />
+				性别：<input th:field="*{sex}" type="radio" name="sex" value="0" checked="true" />男  <input th:field="*{sex}" type="radio" name="sex" value="1" />女   <br /><br />
+				密码：<input th:field="*{password}" type="text" name="password"/><br /><br />
+				手机号：<input th:field="*{phone}" type="text" name="phone"/><br /><br />
+				邮箱：<input th:field="*{email}" type="text" name="email"/><br /><br />
+				<button type="submit">修改</button><br /><br />
+			</form>
+		</div>
+		
+		
+	</body>
+	<style>
+		#div1{
+			margin-left: 400px;
+			margin-top: 100px;
+		}
+	</style>
+</html>

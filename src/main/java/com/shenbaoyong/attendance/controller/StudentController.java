@@ -77,6 +77,10 @@ public class StudentController {
         if(StringUtils.isEmpty(id)){
             id = "0";
         }
+        List<Classroom> classroomList = classroomService.getClassroomList();
+        model.addAttribute("classroomList", classroomList);
+
+        model.addAttribute("classroomName", classroomService.getClassroomNameById(studentUserService.getStudentUserById(Long.parseLong(id)).getClassroomId()));
         StudentUser studentUser = studentUserService.getStudentUserById(Long.parseLong(id));
         studentUserService.deleteStudentById(Long.parseLong(id));
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(studentUser.getClassroomId());

@@ -74,6 +74,7 @@ public class StudentController {
 
     @RequestMapping("/modify")
     public String modifyStudent(StudentUser student,  Model model){
+        logger.info("要更改的学生信息" + student);
         studentUserService.modifyStudent(student);
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(student.getClassroomId());
         model.addAttribute("studentList", studentUserList);

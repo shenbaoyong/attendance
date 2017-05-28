@@ -7,10 +7,10 @@
 	<body>
 		<div id="div1">
 			<div>
-			<a href="../classroom/classroomlist.html">返回</a>
+			<a href="/goto/studentlist">返回</a>
 			</div>
 			<form id="form1" action="/student/modify" method="post" th:object="${student}">
-				学号：<span th:text="${student.id}"></span>
+				学号：<input th:field="*{id}" type="text" name="id" readonly="true"/><br />
 				班级：<select th:field="*{classroomId}" name="classroomId">
 						<option value="2">软件132</option>
 						<option value="3">软件131</option>
@@ -24,8 +24,8 @@
 				密码：<input th:field="*{password}" type="text" name="password"/><br />
 				手机号：<input th:field="*{phone}" type="text" name="phone"/><br />
 				邮箱：<input th:field="*{email}" type="text" name="email"/><br />
-				<button type="submit">修改</button><br />	
-			</form>	
+				<button type="submit">修改</button><br />
+			</form>
 		</div>
 		
 		

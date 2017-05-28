@@ -40,7 +40,7 @@
 					<td th:text="${student.id}">Onions</td>
 					<td th:text="${student.name}">2.41</td>
 					<td th:text="${student.classroomId}">Onions</td>
-					<td th:text="${student.sex}">Onions</td>
+					<td th:text="( (${student.sex})? '女' : '男')">Onions</td>
 					<td ><a href="http://www.baidu.com" th:href="@{/goto/modifyStudentPage(id=${student.id})}">修改</a></td>
 					<td ><a href="http://www.baidu.com" th:href="@{/student/delete(id=${student.id})}">删除</a></td>
 				</tr>

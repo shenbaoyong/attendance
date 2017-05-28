@@ -74,4 +74,16 @@ public class StudentUser implements Serializable{
         this.password = password == null ? null : password.trim();
     }
 
+    @Override
+    public String toString() {
+        return "StudentUser{" +
+                "id=" + id +
+                ", classroomId=" + classroomId +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

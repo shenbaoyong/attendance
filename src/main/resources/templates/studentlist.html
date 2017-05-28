@@ -3,9 +3,13 @@
 	<head>
 		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" /> 
 		<meta charset="UTF-8" />
-		<title>学生列表</title>
+		<title>教师列表</title>
 	</head>
 	<body>
+	<div >
+		<a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+		<span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.adminUser.id + session.login_user.adminUser.name}"></span>
+	</div>
 	<div style="margin-top: 50px;">
 		<div>
 			<a href="/goto/addStudentPage">增加一个学生</a>

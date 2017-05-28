@@ -1,8 +1,10 @@
 package com.shenbaoyong.attendance.controller;
 
 import com.shenbaoyong.attendance.pojo.Classroom;
+import com.shenbaoyong.attendance.pojo.Dept;
 import com.shenbaoyong.attendance.pojo.StudentUser;
 import com.shenbaoyong.attendance.service.IClassroomService;
+import com.shenbaoyong.attendance.service.IDeptService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class GotoController {
     IStudentUserService studentUserService;
     @Autowired
     IClassroomService classroomService;
+    @Autowired
+    IDeptService deptService;
 
     @GetMapping("/addStudentPage")
     public String addStudentPage(Model model){
@@ -34,6 +38,11 @@ public class GotoController {
         List<Classroom> classroomList = classroomService.getClassroomList();
         model.addAttribute("classroomList", classroomList);
         return "studentlist";
+    }
+
+    @GetMapping("/teacherlist")
+    public String teacherlistPage(Model model){
+        return "teacherlist";
     }
 
     @RequestMapping("/modifyStudentPage")

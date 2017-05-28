@@ -5,6 +5,10 @@
 		<title>编辑一个新学生</title>
 	</head>
 	<body>
+	<div >
+		<a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+		<span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.adminUser.id + session.login_user.adminUser.name}"></span>
+	</div>
 		<form>
 			班级：<input type="text" disabled="disabled" /> <br />
 			姓名：<input type="text" /><br />

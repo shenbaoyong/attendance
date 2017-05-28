@@ -7,6 +7,7 @@ import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.UserVO;
 import com.shenbaoyong.attendance.service.IAccountService;
+import com.shenbaoyong.attendance.service.IDeptService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import com.shenbaoyong.attendance.service.ITeacherUserService;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +38,11 @@ public class AccountController {
     IStudentUserService studentUserService;
     @Autowired
     ITeacherUserService teacherUserService;
+    @Autowired
+    IDeptService deptService;
 
     @PostMapping("/login")
-    public String login(UserVO userVO, Model model){
+    public String login(UserVO userVO, Model model, HttpServletRequest request){
         try{
             String userType = userVO.getUserType();
             long id = Long.parseLong(userVO.getUserId());
@@ -49,6 +53,7 @@ public class AccountController {
                 LoginUser loginUser = sessionComponent.getLoginUser();
                 loginUser = sessionComponent.getLoginUser();
                 if(loginUser.hasAdminUser()){
+                    request.getSession().setAttribute("deptlist",deptService.getDeptList());
                     return "adminpage";
                 }else if(loginUser.hasStudentUser()){
                     List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(loginUser.getStudentUser().getId());
@@ -67,15 +72,14 @@ public class AccountController {
             return "helloHtml";
         }
     }
-
     @GetMapping("/logout")
-    public BaseResult logout(){
+    public String logout(){
         try {
             BaseResult result = accountService.logout();
-            return result;
+            return "index";
         }catch (Exception e){
             logger.error("退出失败",e);
-            return BaseResult.error("退出失败");
+            return "index";
         }
     }
 }

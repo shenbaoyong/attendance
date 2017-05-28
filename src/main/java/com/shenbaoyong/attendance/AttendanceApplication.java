@@ -48,13 +48,13 @@ public class AttendanceApplication {
 			return "index";
 		}else {
 			if(loginUser.hasAdminUser()){
-
+				return "adminpage";
 			}else if(loginUser.hasStudentUser()){
-				List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(1304030221L);
+				List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(loginUser.getStudentUser().getId());
 				model.addAttribute("courseList", courseListVOList);
 				return "studentCourseList";
 			}else if(loginUser.hasTeacherUser()){
-				List<CourseListVO> courseListVOList = teacherUserService.getCourseListOfTeacher(1304030221L);
+				List<CourseListVO> courseListVOList = teacherUserService.getCourseListOfTeacher(loginUser.getTeacherUser().getId());
 				model.addAttribute("courseList", courseListVOList);
 				return "teacherCourseList";
 			}

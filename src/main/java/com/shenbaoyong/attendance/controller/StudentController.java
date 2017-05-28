@@ -4,6 +4,7 @@ import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.pojo.LoginUser;
 import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.*;
+import com.shenbaoyong.attendance.service.IClassroomService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,8 @@ public class StudentController {
     SessionComponent sessionComponent;
     @Autowired
     IStudentUserService studentUserService;
+    @Autowired
+    IClassroomService classroomService;
 
     @RequestMapping("/course/list")
     public String getStudentCourseList(String week,  Model model){
@@ -46,17 +49,26 @@ public class StudentController {
 
     @RequestMapping("/list")
     public String getStudentList(@RequestParam("classroom_id") String classroomId,  Model model){
+        List<Classroom> classroomList = classroomService.getClassroomList();
+        model.addAttribute("classroomList", classroomList);
         if(StringUtils.isEmpty(classroomId)){
             return "studentlist";
         }
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(Integer.parseInt(classroomId));
         model.addAttribute("studentList", studentUserList);
+        model.addAttribute("classroomId", classroomId);
+        model.addAttribute("classroomName", classroomService.getClassroomNameById(Integer.parseInt(classroomId)));
         return "studentlist";
     }
 
     @RequestMapping("/add")
     public String addStudent(StudentUser studentUser ,  Model model) {
         studentUserService.addStudentUser(studentUser);
+        List<Classroom> classroomList = classroomService.getClassroomList();
+        model.addAttribute("classroomList", classroomList);
+        List<StudentUser> studentUserList = studentUserService.getStudentUserList(studentUser.getClassroomId());
+        model.addAttribute("studentList", studentUserList);
+        model.addAttribute("classroomName", classroomService.getClassroomNameById(studentUser.getClassroomId()));
         return "studentlist";
     }
 
@@ -78,6 +90,9 @@ public class StudentController {
         studentUserService.modifyStudent(student);
         List<StudentUser> studentUserList = studentUserService.getStudentUserList(student.getClassroomId());
         model.addAttribute("studentList", studentUserList);
+        List<Classroom> classroomList = classroomService.getClassroomList();
+        model.addAttribute("classroomList", classroomList);
+        model.addAttribute("classroomName", classroomService.getClassroomNameById(student.getClassroomId()));
         return "studentList";
     }
 

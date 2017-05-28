@@ -16,7 +16,16 @@ public class ClassroomServiceImpl implements IClassroomService{
     @Autowired
     ClassroomMapper classroomMapper;
     @Override
-    public List<Classroom> getClassroomList(int offset, int limit) {
-        return classroomMapper.quaryAll(offset, limit);
+    public List<Classroom> getClassroomList() {
+        return classroomMapper.quaryAll(0, 100);
+    }
+
+    @Override
+    public String getClassroomNameById(Integer classroomId) {
+        Classroom classroom = classroomMapper.selectByPrimaryKey(classroomId);
+        if(classroom == null){
+            return "未知";
+        }
+        return classroom.getName();
     }
 }

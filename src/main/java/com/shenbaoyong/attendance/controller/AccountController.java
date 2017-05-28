@@ -2,6 +2,7 @@ package com.shenbaoyong.attendance.controller;
 
 import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.constents.UserConstants;
+import com.shenbaoyong.attendance.common.pojo.LoginUser;
 import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.CourseListVO;
 import com.shenbaoyong.attendance.pojo.UserVO;
@@ -45,18 +46,18 @@ public class AccountController {
             BaseResult result = accountService.login(userType, id, password);
 
             if(result.isSuccess()){
-                String welcomMsg = sessionComponent.getLoginUser().getWelcomMsg();
-                model.addAttribute("msg", welcomMsg);
-                if(sessionComponent.getLoginUser().hasStudentUser()){
-                    List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(1304030221L);
+                LoginUser loginUser = sessionComponent.getLoginUser();
+                loginUser = sessionComponent.getLoginUser();
+                if(loginUser.hasAdminUser()){
+                    return "adminpage";
+                }else if(loginUser.hasStudentUser()){
+                    List<CourseListVO> courseListVOList = studentUserService.getCourseListOfStudent(loginUser.getStudentUser().getId());
                     model.addAttribute("courseList", courseListVOList);
                     return "studentCourseList";
-                }else if(sessionComponent.getLoginUser().hasTeacherUser()){
-                    List<CourseListVO> courseListVOList = teacherUserService.getCourseListOfTeacher(1304030221L);
+                }else if(loginUser.hasTeacherUser()){
+                    List<CourseListVO> courseListVOList = teacherUserService.getCourseListOfTeacher(loginUser.getTeacherUser().getId());
                     model.addAttribute("courseList", courseListVOList);
                     return "teacherCourseList";
-                }else if (sessionComponent.getLoginUser().hasAdminUser()){
-                    return "adminpage";
                 }
             }
             model.addAttribute("msg", result.getError());

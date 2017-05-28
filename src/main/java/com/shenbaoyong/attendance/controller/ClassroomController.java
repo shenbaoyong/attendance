@@ -28,9 +28,9 @@ public class ClassroomController {
         try{
             logger.info("------------request :  /classroom/list-------");
             //System.out.println("------------request :  /classroom/list---------------");
-            offset = offset == null ? 0 : offset;
-            limit = limit == null ? 2 : limit;
-            List<Classroom> classroomList = classroomService.getClassroomList(offset, limit);
+            //offset = offset == null ? 0 : offset;
+            //limit = limit == null ? 2 : limit;
+            List<Classroom> classroomList = classroomService.getClassroomList();
             return new BootStrapTableResult<Classroom>(classroomList);
         }catch (Exception e){
             e.printStackTrace();

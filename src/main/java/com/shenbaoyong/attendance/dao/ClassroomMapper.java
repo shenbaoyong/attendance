@@ -28,5 +28,5 @@ public interface ClassroomMapper {
 
     int updateByPrimaryKey(Classroom record);
 
-    List<Classroom> quaryAll(int offset, int limit);
+    List<Classroom> quaryAll(@Param("offset")int offset, @Param("limit")int limit);
 }

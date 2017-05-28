@@ -1,12 +1,16 @@
 package com.shenbaoyong.attendance.controller;
 
+import com.shenbaoyong.attendance.pojo.Classroom;
 import com.shenbaoyong.attendance.pojo.StudentUser;
+import com.shenbaoyong.attendance.service.IClassroomService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * Created by Shen Baoyong on 2017/5/27.
@@ -17,6 +21,8 @@ public class GotoController {
 
     @Autowired
     IStudentUserService studentUserService;
+    @Autowired
+    IClassroomService classroomService;
 
     @GetMapping("/addStudentPage")
     public String addStudentPage(Model model){
@@ -25,6 +31,8 @@ public class GotoController {
 
     @GetMapping("/studentlist")
     public String studentlistPage(Model model){
+        List<Classroom> classroomList = classroomService.getClassroomList();
+        model.addAttribute("classroomList", classroomList);
         return "studentlist";
     }
 

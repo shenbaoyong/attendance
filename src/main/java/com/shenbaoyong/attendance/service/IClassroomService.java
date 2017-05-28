@@ -8,5 +8,6 @@ import java.util.List;
  * Created by Baoyong Shen on 2017/3/15.
  */
 public interface IClassroomService {
-    List<Classroom> getClassroomList(int offset, int limit);
+    List<Classroom> getClassroomList();
+    String getClassroomNameById(Integer classroomId);
 }

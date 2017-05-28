@@ -11,19 +11,15 @@
 			<a href="/goto/addStudentPage">增加一个学生</a>
 		</div>
 		<form action="/student/list" method="post">
-			班级：<select name="classroom_id">
-			<option value="2">软件132</option>
-			<option value="3">软件131</option>
-			<option value="4">软件133</option>
-			<option value="5">计算131</option>
-			<option value="6">金融131</option>
-			<option value="7">金融132</option>
-		</select>
+			班级：<select name="classroom_id"  th:remove="all-but-first">
+					<option th:each="classroom : ${classroomList}"
+						th:value="${classroom.id}" th:text="${classroom.name}">Credit card</option>
+					<option>Another payment method</option>
+					<option>Another payment method</option>
+				</select>
 			<input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
 			<br />
 		</form>
-
-
 	</div>
 		<div style="margin-top: 50px;">
 			<table class="table">
@@ -39,7 +35,7 @@
 				<tr th:each="student : ${studentList}">
 					<td th:text="${student.id}">Onions</td>
 					<td th:text="${student.name}">2.41</td>
-					<td th:text="${student.classroomId}">Onions</td>
+					<td th:text="${classroomName}">Onions</td>
 					<td th:text="( (${student.sex})? '女' : '男')">Onions</td>
 					<td ><a href="http://www.baidu.com" th:href="@{/goto/modifyStudentPage(id=${student.id})}">修改</a></td>
 					<td ><a href="http://www.baidu.com" th:href="@{/student/delete(id=${student.id})}">删除</a></td>

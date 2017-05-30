@@ -26,4 +26,12 @@ public class AttendanceViewServiceImpl implements IAttendanceViewService{
         criteria.andIdEqualTo(courseSchedualId);
         return attendanceViewMapper.selectByExample(attendanceViewExample);
     }
+
+    @Override
+    public List<AttendanceView> getAttendanceViewOfTeacher(Integer courseSchedualId) {
+        AttendanceViewExample attendanceViewExample = new AttendanceViewExample();
+        AttendanceViewExample.Criteria criteria = attendanceViewExample.createCriteria();
+        criteria.andIdEqualTo(courseSchedualId);
+        return attendanceViewMapper.selectByExample(attendanceViewExample);
+    }
 }

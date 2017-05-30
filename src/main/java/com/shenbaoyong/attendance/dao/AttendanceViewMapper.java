@@ -19,4 +19,6 @@ public interface AttendanceViewMapper {
     int updateByExampleSelective(@Param("record") AttendanceView record, @Param("example") AttendanceViewExample example);
 
     int updateByExample(@Param("record") AttendanceView record, @Param("example") AttendanceViewExample example);
+
+    int updatestatus(@Param("weekId")Integer weekId, @Param("id")Integer id, @Param("studentId")Integer studentId,@Param("flag") Byte flag);
 }

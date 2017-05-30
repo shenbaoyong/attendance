@@ -1,9 +1,8 @@
 package com.shenbaoyong.attendance.service.impl;
 
+import com.shenbaoyong.attendance.dao.AttendanceViewMapper;
 import com.shenbaoyong.attendance.dao.TeacherUserMapper;
-import com.shenbaoyong.attendance.pojo.CourseListVO;
-import com.shenbaoyong.attendance.pojo.TeacherUser;
-import com.shenbaoyong.attendance.pojo.TeacherUserExample;
+import com.shenbaoyong.attendance.pojo.*;
 import com.shenbaoyong.attendance.service.ITeacherUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,8 @@ public class TeacherUserServiceImpl implements ITeacherUserService{
 
     @Autowired
     TeacherUserMapper teacherUserMapper;
+    @Autowired
+    AttendanceViewMapper attendanceViewMapper;
 
     @Override
     public TeacherUser getTeacherUserById(Long id) {
@@ -68,5 +69,10 @@ public class TeacherUserServiceImpl implements ITeacherUserService{
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public void updatestatus(Integer weekId, Integer id, Integer studentId, Byte flag) {
+        attendanceViewMapper.updatestatus(weekId, id, studentId, flag);
     }
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<div >
+    <a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+    <span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.teacherUser.id + session.login_user.teacherUser.name}"></span>
+</div>
+<form method="post" action="/teacher/course/detail">
+    <select name="week" style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;">
+        <option value="0">未选择</option>
+        <option value="1">第1周</option>
+        <option value="2">第2周</option>
+        <option value="3">第3周</option>
+        <option value="4">第4周</option>
+        <option value="5">第5周</option>
+        <option value="6">第6周</option>
+        <option value="7">第7周</option>
+        <option value="8">第8周</option>
+        <option value="9">第9周</option>
+        <option value="10">第10周</option>
+        <option value="11">第11周</option>
+        <option value="12">第12周</option>
+        <option value="13">第13周</option>
+        <option value="14">第14周</option>
+        <option value="15">第15周</option>
+        <option value="16">第16周</option>
+        <option value="17">第17周</option>
+        <option value="18">第18周</option>
+    </select>
+    <button style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;">查询</button>
+    <span style="margin-right: 20px;">0未点名 1正常 2迟到 3缺课 4早退</span>
+</form>
+<div>
+    <span th:text="${id}">666</span>
+</div>
+<div style="margin-top: 50px;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>周次</th>
+            <th>课程名</th>
+            <th>上课时间(第几节课)</th>
+            <th>状态</th>
+            <th>操作</th>
+            <th>学生姓名</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${list}">
+            <td th:text="${item.weekId}">Onions</td>
+            <td th:text="${item.cname}">Onions</td>
+            <td th:text="${item.courseTimeId}">Onions</td>
+            <td th:text="${item.status}">Onions</td>
+            <td><a th:href="@{/teacher/updatestatus(weekId=${item.weekId}, id=${item.id},studentId=${item.sid},flag=0)}"><button>正常</button></a>
+                <a th:href="@{/teacher/updatestatus(weekId=${item.weekId},id=${item.id},studentId=${item.sid},flag=1)}"><button>迟到</button></a>
+                <a th:href="@{/teacher/updatestatus(weekId=${item.weekId},id=${item.id},studentId=${item.sid},flag=2)}"><button>早退</button></a>
+                <a th:href="@{/teacher/updatestatus(weekId=${item.weekId},id=${item.id},studentId=${item.sid},flag=3)}"><button>缺勤</button></a>
+            </td>
+            <td th:text="${item.sname}">2.41</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

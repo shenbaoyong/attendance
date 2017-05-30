@@ -32,7 +32,7 @@
                 <td th:text="${course.teacherName}">Onions</td>
                 <td th:text="${course.courseTimeId}">2.41</td>
                 <td th:text="${course.dayOfWeek}">Onions</td>
-                <td ><a href="http://www.baidu.com" th:href="@{http://localhost:8081}">详情</a></td>
+                <td ><a href="http://www.baidu.com" th:href="@{/teacher/course/detail(courseSchedulId=${course.courseSchedulId})}">详情</a></td>
             </tr>
             </tbody>
         </table>

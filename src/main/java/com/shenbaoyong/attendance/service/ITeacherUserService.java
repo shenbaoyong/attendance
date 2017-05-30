@@ -19,4 +19,6 @@ public interface ITeacherUserService {
     boolean deleteTeacherById(long id);
 
     boolean modifyStudent(TeacherUser teacherUser);
+
+    void updatestatus(Integer weekId, Integer id, Integer studentId, Byte flag);
 }

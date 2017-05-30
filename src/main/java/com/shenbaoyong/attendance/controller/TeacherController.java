@@ -1,8 +1,9 @@
 package com.shenbaoyong.attendance.controller;
 
 import com.shenbaoyong.attendance.common.component.SessionComponent;
-import com.shenbaoyong.attendance.pojo.StudentUser;
-import com.shenbaoyong.attendance.pojo.TeacherUser;
+import com.shenbaoyong.attendance.common.pojo.LoginUser;
+import com.shenbaoyong.attendance.pojo.*;
+import com.shenbaoyong.attendance.service.IAttendanceViewService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import com.shenbaoyong.attendance.service.ITeacherUserService;
 import org.slf4j.Logger;
@@ -66,5 +67,32 @@ public class TeacherController {
         List<TeacherUser> teacherUserList = teacherUserService.getTeacherUserList();
         model.addAttribute("teacherList", teacherUserList);
         return "teacherCourseList";
+    }
+
+    @RequestMapping("updatestatus")
+    public String updatestatus(Integer weekId, Integer id,Integer studentId, Integer flag, Model model ){
+        //model.addAttribute("courseSchedulId", courseSchedulId);
+        try{
+            teacherUserService.updatestatus(weekId, id, studentId, (byte)flag.intValue());
+            logger.info("id" + id + "\n studentID = " + studentId + "\n flag =" + flag);
+            List<AttendanceView> list = attendanceViewService.getAttendanceViewOfTeacher(id);
+            model.addAttribute("list", list);
+            return "teacherACourseAttendanceInfo";
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("更改考勤状态出错，" + e);
+        }
+        return "teacherACourseAttendanceInfo";
+    }
+
+    @Autowired
+    IAttendanceViewService attendanceViewService;
+
+    @RequestMapping("/course/detail")
+    public String getCourseDetail(Integer courseSchedulId,  Model model){
+        model.addAttribute("courseSchedulId", courseSchedulId);
+        List<AttendanceView> list = attendanceViewService.getAttendanceViewOfTeacher(courseSchedulId);
+        model.addAttribute("list", list);
+        return "teacherACourseAttendanceInfo";
     }
 }

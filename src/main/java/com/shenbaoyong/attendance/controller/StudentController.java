@@ -4,6 +4,7 @@ import com.shenbaoyong.attendance.common.component.SessionComponent;
 import com.shenbaoyong.attendance.common.pojo.LoginUser;
 import com.shenbaoyong.attendance.dto.BaseResult;
 import com.shenbaoyong.attendance.pojo.*;
+import com.shenbaoyong.attendance.service.IAttendanceViewService;
 import com.shenbaoyong.attendance.service.IClassroomService;
 import com.shenbaoyong.attendance.service.IStudentUserService;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class StudentController {
     IStudentUserService studentUserService;
     @Autowired
     IClassroomService classroomService;
+    @Autowired
+    IAttendanceViewService attendanceViewService;
 
     @RequestMapping("/course/list")
     public String getStudentCourseList(String week,  Model model){
@@ -100,12 +103,15 @@ public class StudentController {
         return "studentList";
     }
 
-    @RequestMapping("/course/detail")
-    public String getCourseDetail(Integer courseSchedulId,  Model model){
-        //studentUserService.modifyStudent(student);
-        //List<StudentUser> studentUserList = studentUserService.getStudentUserList();
-        model.addAttribute("id", courseSchedulId);
 
+    @RequestMapping("/course/detail")
+    public String getCourseDetail(String week, Integer courseSchedulId,  Model model){
+        model.addAttribute("courseSchedulId", courseSchedulId);
+        LoginUser loginUser = sessionComponent.getLoginUser();
+        StudentUser studentUser =  loginUser.getStudentUser();
+
+        List<AttendanceView> list = attendanceViewService.getAttendanceViewOfStudent(studentUser, courseSchedulId);
+        model.addAttribute("list", list);
         return "studentACourseAttendanceInfo";
     }
 

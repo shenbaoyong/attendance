@@ -9,6 +9,10 @@
 </head>
 <body>
 <div>
+    <div >
+        <a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+        <span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}"></span>
+    </div>
     <form class="form-horizontal" action="/student/course/list" method="post">
         <select style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;" name="week">
             <option value="0">未选择</option>
@@ -19,7 +23,6 @@
             <option value="5">星期五</option>
         </select>
         <input type="submit" style="width: 100px; height: 40px; margin-left: 100px; margin-top: 10px;"  name="Button" value="查询" />
-        <span th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}" style="width: 100px; height: 40px; margin-left: 200px; margin-top: 10px;">666</span>
         <a th:href="@{/student/changePassword}">修改密码</a>&nbsp;
         <a th:href="@{/account/logout}">退出</a>
     </form>

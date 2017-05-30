@@ -8,7 +8,10 @@
     <script src="js/jquery.js"></script>
 </head>
 <body>
-
+<div >
+    <a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+    <span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.studentUser.id + session.login_user.studentUser.name}"></span>
+</div>
 <div>
     <select style="width: 100px;height: 30px; margin-top: 10px; margin-left: 10px;">
         <option>未选择</option>

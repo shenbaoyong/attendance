@@ -8,8 +8,9 @@
     <script src="js/jquery.js"></script>
 </head>
 <body>
-<div>
-    <span th:text="${session.login_user.teacherUser.id + session.login_user.teacherUser.name}" style="width: 100px; height: 40px; margin-right: 300px; margin-top: 10px;">666</span>
+<div >
+    <a style="margin-right: 20px; width: 300px;height: 100px;" href="/account/logout" th:href="@{/account/logout}"><button>退出</button></a>
+    <span style="margin-right: 20px; width: 300px;height: 100px;"  th:text="${session.login_user.teacherUser.id + session.login_user.teacherUser.name}"></span>
 </div>
 <div style="margin-top: 50px;">
     <div class="container">

@@ -53,5 +53,9 @@ public class GotoController {
     }
 
 
+    @RequestMapping("/viewAttendance")
+    public String viewAttendance(Model model){
+        return "viewAttendance";
+    }
 
 }
